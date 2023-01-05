@@ -1,0 +1,42 @@
+<h2><b>Formularios de Declaração EGPP Antes 2019</b></h2>
+
+{# Select Tipo de Declaração #}
+{% if message_body.tipodedeclaracao == 0 %}
+  <p><b>Tipo</b>: Declaração de Conclusão</p>
+{% else %}
+  <p><b>Tipo</b>: Declaração de Pagamento</p>
+{% endif %}
+
+<p><b>Curso</b>: {{ message_body.curso }}</p>
+<p><b>Ano</b>: {{ message_body.ano }}</p>
+<p><b>E-mail</b>: {{ message_body.email }}</p>
+<p><b>Telefone</b>: {{ message_body.telefone }}</p>
+<p><b>RG</b>: {{ message_body.RG }}</p>
+<p><b>Órgao</b>: {{ message_body.orgao }}</p>
+<p><b>CPF</b>: {{ message_body.CPF }}</p>
+<p><b>ciencia</b>: {{ message_body.ciencia }}</p>
+
+
+<style>
+/* unvisited link */
+a:link {
+  color: #006aa7;
+  text-decoration:none
+}
+
+/* visited link */
+a:visited {
+  color: green;
+}
+
+/* mouse over link */
+a:hover {
+  color: #003757;
+  text-decoration: underline;
+}
+
+/* selected link */
+a:active {
+  color: #2c3e4c;
+} 
+</style>

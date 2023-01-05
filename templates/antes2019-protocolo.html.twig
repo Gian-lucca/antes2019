@@ -1,0 +1,9 @@
+<h2><b>Resposta do Formularios de Declaração EGPP Antes 2019</b></h2>
+<p>Olá {{ message_body.nome }}, sua declaração foi solicitada com sucesso referente a solicitação abaixo:</p>
+
+{# Select Tipo de Declaração #}
+{% if message_body.tipodedeclaracao == 0 %}
+  <p><b>Tipo</b>: Declaração de Conclusão</p>
+{% else %}
+  <p><b>Tipo</b>: Declaração de Pagamento</p>
+{% endif %}

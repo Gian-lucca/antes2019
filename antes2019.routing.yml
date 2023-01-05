@@ -1,0 +1,26 @@
+#/*
+#|--------------------------------------------------------------------------
+#| antes2019.routing.yml
+#|--------------------------------------------------------------------------
+#| AArquivo onde informamos a rota em nosso site Drupal
+#| author Gianlucca Augusto <gianlucca.augusto@extreme.digital>
+#| version 1.0
+#| copyright Proderj 2022.
+#*/
+antes2019_form:
+  path: '/antes-2019'
+  defaults:
+    _form: '\Drupal\antes2019\Form\antes2019Form'
+    _title: 'Form'
+  requirements:
+   _permission: 'access content'
+
+antes2019.admin_settings_form:  
+  path: '/admin/config/antes2019/adminsettings'
+  defaults:  
+    _title: 'Formulário' 
+    _form: '\Drupal\antes2019\Form\antes2019AdminForm'   
+  requirements:  
+    _permission: 'access administration pages'  
+  options:  
+    _admin_route: TRUE

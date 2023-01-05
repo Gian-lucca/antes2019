@@ -1,0 +1,98 @@
+<?php
+/*
+|--------------------------------------------------------------------------
+| antes2019.module
+|--------------------------------------------------------------------------|
+| Arquivo é onde implementamos o layout que será enviado para o emails 
+| usuário
+| author Gianlucca Augusto <gianlucca.augusto@extreme.digital>
+| version 1.0
+| copyright Proderj 2022.
+*/
+
+/**
+ * @file
+ * Formulário
+ */
+
+use Drupal\Component\Utility\Html;
+
+/**
+ * Implements hook_mail().
+ */
+function antes2019_mail($key, &$message, $params) {
+  switch ($key) {
+    case 'antes2019_notificacao':
+      $message['from'] = \Drupal::config('system.site')->get('email');
+      $site_name = \Drupal::config('system.site')->get('nome');
+
+      $message['subject'] = $site_name . ": " . t('Novo formularios de Declaração EGPP Antes 2019');
+
+      $message_body['curso'] = $params['message']['curso'];
+      $message_body['ano'] = $params['message']['ano'];
+      $message_body['nome'] = $params['message']['nome'];
+      $message_body['email'] = $params['message']['email'];
+      $message_body['telefone'] = $params['message']['telefone'];
+      $message_body['RG'] = $params['message']['RG'];
+      $message_body['orgao'] = $params['message']['orgao'];
+      $message_body['CPF'] = $params['message']['CPF'];
+      $message_body['ciencia'] = $params['message']['ciencia'];
+
+
+      /**
+       * Chama o template antes2019_notificacao
+       */
+      $message_theme_body = array(
+        '#theme' => 'antes2019_notificacao',
+        '#message_body' => $message_body,
+       );
+      
+      $message_render = \Drupal::service('renderer')->render($message_theme_body);
+      $message['body'][] = Html::escape($message_render);
+      $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed;';
+      break;
+
+      case 'antes2019_protocolo':
+        $message['from'] = \Drupal::config('system.site')->get('email');
+        $site_name = \Drupal::config('system.site')->get('nome');
+  
+        $message['subject'] = $site_name . ": " . t('Confirmação do formularios de Declaração EGPP Antes 2019');
+  
+        $message_body['curso'] = $params['message']['curso'];
+        $message_body['ano'] = $params['message']['ano'];
+        $message_body['nome'] = $params['message']['nome'];
+        $message_body['email'] = $params['message']['email'];
+        $message_body['telefone'] = $params['message']['telefone'];
+        $message_body['RG'] = $params['message']['RG'];
+        $message_body['orgao'] = $params['message']['orgao'];
+        $message_body['CPF'] = $params['message']['CPF'];
+        $message_body['ciencia'] = $params['message']['ciencia'];
+        
+        /**
+         * Chama o template antes2019_protocolo
+         */
+        $message_theme_body = array(
+          '#theme' => 'antes2019_protocolo',
+          '#message_body' => $message_body,
+         );
+        
+        $message_render = \Drupal::service('renderer')->render($message_theme_body);
+        $message['body'][] = Html::escape($message_render);
+        $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed;';
+        break;
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function antes2019_theme($existing, $type, $theme, $path) {
+  return [
+    'antes2019_notificacao' => [
+      'variables' => ['message_body' => NULL],
+    ],
+    'antes2019_protocolo' => [
+      'variables' => ['message_body' => NULL],
+    ]
+  ];
+}

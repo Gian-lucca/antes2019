@@ -1,0 +1,15 @@
+#/*
+#|--------------------------------------------------------------------------
+#| antes2019.info.yml
+#|--------------------------------------------------------------------------
+#| Arquivo onde podemos criar um menu automárico para o site Drupal
+#| author Gianlucca Augusto <gianlucca.augusto@extreme.digital>
+#| version 1.0
+#| copyright Proderj 2022.
+#*/
+
+name: 'Formularios de Declaração Antes 2019'
+description: 'Formulários Ceperj.'
+package: 'Formulario'
+type: 'module'
+core_version_requirement: ^8 || ^9 || ^10
